@@ -9,6 +9,9 @@ const App = () => {
   const addSmurf = (newSmurf) => {
     setSmurfs([...smurfs, newSmurf]);
   };
+  const removeSmurf = (id) => {
+    setSmurfs(smurfs.filter((obj) => obj.id != id));
+  };
   useEffect(() => {
     axios.get("http://localhost:3333/smurfs").then((res) => {
       console.log(res.data);
@@ -16,9 +19,12 @@ const App = () => {
     });
   }, []);
   return (
-    <SmurfContext.Provider value={{ addSmurf, smurfs }}>
+    <SmurfContext.Provider value={{ removeSmurf, addSmurf, smurfs }}>
       <div className="container">
-        <SmurfList />
+        <h2>Welcome To Smurf World!</h2>
+        <div className="cards">
+          <SmurfList />
+        </div>
         <SmurfForm />
       </div>
     </SmurfContext.Provider>

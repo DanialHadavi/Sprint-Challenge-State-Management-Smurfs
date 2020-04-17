@@ -23,10 +23,28 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+It solves the problem of props drilling by simplifying state management in our components.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions are packets of information that contain an action type and associated data.
+reducers are the only place we can update our state
+Store: It stores the whole state of the app in an immutable object tree.
+Store known as a single source of truth means that the only way to change our data in UI is to dispatch redux action which will change state within redux reducer
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+application state is global, and component state is local. we use "stores" to hold application state. That means any component, anywhere in the app can access it (kind of like a database) so long as we hook into it.
+Component state however, lives within that specific component. As such, it can only be updated within that component and passed down to its children via props.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux Thunk is a middleware that provides the ability to handle asynchronous operations inside our Action Creators. Since the Redux action -> reducer flow is synchronous, we will use Redux Thunk to make the flow asynchronous and make API calls from our action creators.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+Context API because it's simple and easy to write however it has downsides when it comes to bigger apps for example If our state is frequently updated, Context may not be as effective or efficient as a tool like Redux. But if we have static data that undergoes lower-frequency updates such as preferred language, time changes, location changes, and user authentication, passing down props with React Context may be the best option.
 
 ## Project Set Up
 
@@ -64,8 +82,8 @@ Follow these steps to set up your project:
     name: "Brainey",
     age: 200,
     height: "5cm",
-    id: 0
-  }
+    id: 0,
+  },
 ];
 ```
 
@@ -97,14 +115,14 @@ Example of object created in Smurf DB:
     name: "Brainey",
     age: 200,
     height: "5cm",
-    id: 0
+    id: 0,
   },
   {
     name: "Sleepy",
     age: 200,
     height: "5cm",
-    id: 1
-  }
+    id: 1,
+  },
 ];
 ```
 
@@ -157,7 +175,7 @@ output: [
     name: "Sleepy",
     age: 200,
     height: "5cm",
-    id: 1
-  }
+    id: 1,
+  },
 ];
 ```
